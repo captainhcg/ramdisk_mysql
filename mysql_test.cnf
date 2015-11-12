@@ -1,0 +1,55 @@
+[mysql]
+
+# CLIENT #
+port                           = 3307
+socket                         = /Volumes/mysql_test/mysql.sock
+
+[mysqld]
+
+# GENERAL #
+user                           = mysql
+default-storage-engine         = InnoDB
+socket                         = /Volumes/mysql_test/mysql.sock
+pid-file                       = /Volumes/mysql_test/mysql.pid
+
+# MyISAM #
+key-buffer-size                = 16M
+myisam-recover                 = FORCE,BACKUP
+
+# SAFETY #
+max-allowed-packet             = 8M
+max-connect-errors             = 1000000
+
+# DATA STORAGE #
+datadir                        = /Volumes/mysql_test/
+
+# BINARY LOGGING #
+# Do not need binary log for in mem db
+# log-bin                        = /Volumes/mysql_test/mysql-bin
+# expire-logs-days               = 14
+# sync-binlog                    = 1
+
+# CACHES AND LIMITS #
+tmp-table-size                 = 16M
+max-heap-table-size            = 16M
+query-cache-type               = 0
+query-cache-size               = 0
+max-connections                = 500
+thread-cache-size              = 50
+open-files-limit               = 65535
+table-definition-cache         = 1024
+table-open-cache               = 2048
+
+# INNODB #
+innodb-flush-method            = O_DIRECT
+innodb-log-files-in-group      = 2
+innodb-log-file-size           = 16M
+innodb-flush-log-at-trx-commit = 1
+innodb-file-per-table          = 1
+innodb-buffer-pool-size        = 128M
+
+# LOGGING #
+log-error                      = /Volumes/mysql_test/mysql-error.log
+log-queries-not-using-indexes  = 1
+slow-query-log                 = 1
+slow-query-log-file            = /Volumes/mysql_test/mysql-slow.log
